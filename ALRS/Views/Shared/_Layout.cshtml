@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" charset="utf-8">
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - ALRS</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @*@Scripts.Render("~/bundles/custom")*@
+    @*<script type="text/javascript" src="@Url.Content("~/Scripts/jquery-2.0.3.min.js")"></script>*@
+    @*<script type="text/javascript" src="@Url.Content("~/Scripts/DayPilot/daypilot-all.min.js")"></script>*@
+    <link href='@ViewBag.SPHostUrl/_layouts/15/defaultcss.ashx' type='text/css' rel='stylesheet' />
+    <script src='@ViewBag.SPHostUrl/_layouts/15/SP.UI.Controls.js'></script>
+</head>
+
+<body style="overflow: auto;">
+    <div id="chrome_ctrl_container"></div>
+    <div class="navbar">
+        <div class="container">
+            @*<h2>Welcome @ViewBag.UserName!</h2>*@
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Home", "Index", "Home", new { SPHostUrl = SharePointContext.GetSPHostUrl(HttpContext.Current.Request).AbsoluteUri }, null)</li>
+                @if (ViewData["InOwnerRole"] == "true")
+                {
+                    <li>@Html.ActionLink("Access Control", "Index", "Access", new { SPHostUrl = SharePointContext.GetSPHostUrl(HttpContext.Current.Request).AbsoluteUri }, null)</li>
+                    <li>@Html.ActionLink("Requestor Positions", "Index", "RequestorPosition", new { SPHostUrl = SharePointContext.GetSPHostUrl(HttpContext.Current.Request).AbsoluteUri }, null)</li>
+                }
+                <li>@Html.ActionLink("About", "About", "Home", new { SPHostUrl = SharePointContext.GetSPHostUrl(HttpContext.Current.Request).AbsoluteUri }, null)</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home", new { SPHostUrl = SharePointContext.GetSPHostUrl(HttpContext.Current.Request).AbsoluteUri }, null)</li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="navbar-text">Hello, @User.Identity.Name!</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        <input type="hidden" id="SPHostUrl" value=@SharePointContextFilterAttribute.sphosturl />
+        @RenderBody()
+        <hr />
+        @RenderSection("DocumentLog", required: false) <br /> <br />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Additional Leave Request System<span style="float:right;"><input type="image" class="HomeFooterlogo" style="height:50px;" /></span> </p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/custom")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+

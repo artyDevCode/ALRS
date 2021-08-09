@@ -1,0 +1,34 @@
+﻿@using ActionMailer.Net
+@model ALRSSystem.Models.User
+
+@{
+    Layout = null;
+}
+
+<html>
+
+<body>
+
+    <div>
+
+        A request for additional leave by <b>@Model.FromName</b> requires your attention.
+        <br />
+        <br />
+        Use the below document link to access the request.
+        <br />
+        <br />
+        <a href=@Model.ALRSLink>Document Link</a> 
+        <br />
+        @*Document Link => @Model.ALRSLink*@
+        <br />
+        <br />
+        Regards
+        <br />
+        @Model.FromName
+
+
+    </div>
+
+</body>
+
+</html>

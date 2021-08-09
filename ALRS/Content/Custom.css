@@ -1,0 +1,302 @@
+﻿
+/*
+ * DataTables framework
+ */
+div.dataTables_wrapper {
+	background-color: #719ba7;
+}
+
+div.dataTables_length {
+	float: left;
+}
+
+div.dataTables_filter {
+	float: right;
+}
+
+div.dataTables_info {
+	padding: 9px 6px 6px 6px;
+	float: left;
+}
+
+div.dataTables_paginate {
+	float: right;
+}
+
+div.dataTables_length,
+div.dataTables_filter,
+div.dataTables_paginate {
+	padding: 6px;
+}
+
+
+.NewALRS{
+background:no-repeat url(../Content/images/ALRSNewRequest.GIF) 0 0;
+height:100%;
+width:100%;
+max-width:100%;
+overflow:hidden;
+float:left;
+border:none;
+display:inline;
+
+}
+
+.PendingALRS{
+background:no-repeat url(../content/images/ALRSPendRequest.GIF) 0 0;
+height:100%;
+width:100%;
+max-width:100%;
+overflow:hidden;
+float:left;
+border:none;
+display:inline;
+
+}
+
+.CanxALRS{
+background:no-repeat url(../content/images/ALRSCanxRequest.GIF) 0 0;
+height:100%;
+width:100%;
+max-width:100%;
+overflow:hidden;
+float:left;
+border:none;
+display:inline;
+
+}
+
+.ApprovedALRS{
+background:no-repeat url(../content/images/ALRSApprovedRequest.GIF) 0 0;
+height:100%;
+width:100%;
+max-width:100%;
+overflow:hidden;
+float:left;
+border:none;
+display:inline;
+
+}
+
+.UnsuccessfulALRS{
+background:no-repeat url(../content/images/ALRSUnsuccessfulRequest.GIF) 0 0;
+height:100%;
+width:100%;
+max-width:100%;
+overflow:hidden;
+float:left;
+border:none;
+display:inline;
+
+}
+
+.Homelogo{
+background:no-repeat url(../Content/images/ALRS.PNG) 0 0;
+height:60px;
+width:70px;
+overflow:hidden;
+float:left;
+border:none;
+display:inline;
+
+}
+
+.HomeFooterlogo{
+background:no-repeat url(../Content/images/DOJ_Logo.png) 0 0;
+height:50px;
+width:200px;
+overflow:hidden;
+float:right;
+border:none;
+display:inline;
+
+}
+
+.NewDoclogo{
+background:no-repeat url(../Content/images/newDocument.gif) 0 0;
+height:20px;
+width:20px;
+overflow:hidden;
+float:inherit;
+border:none;
+display:inline;
+}
+
+.DelDoclogo{
+background:no-repeat url(../Content/images/cancel.gif) 0 0;
+height:20px;
+width:20px;
+overflow:hidden;
+float:inherit;
+border:none;
+display:inline;
+}
+
+.EditDoclogo{
+background:no-repeat url(../Content/images/edit.gif) 0 0;
+height:20px;
+width:20px;
+overflow:hidden;
+float:inherit;
+border:none;
+display:inline;
+}
+
+.SaveDoclogo{
+background:no-repeat url(../Content/images/save.gif) 0 0;
+height:20px;
+width:20px;
+overflow:hidden;
+float:inherit;
+border:none;
+display:inline;
+}
+
+.BackDoclogo{
+background:no-repeat url(../Content/images/AuthorProfile.gif) 0 0;
+height:20px;
+width:20px;
+overflow:hidden;
+float:inherit;
+border:none;
+display:inline;
+}
+
+.btn-linkme {
+  font-weight: normal;
+  /*color: #428bca;*/
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 0;
+  padding: 0;
+}
+
+/*.mybody {
+    background:no-repeat url(/Content/Icons/teamroom_outline_4-19.gif) 0 0;
+    padding-top: 100px;
+    padding-bottom: 20px;
+}*/
+.subcatRed{
+    color: red;
+}
+
+#tab1{
+    padding-left:40px;
+}
+#tab2{
+    padding-left:60px;
+}
+#tab3{
+    padding-right:90px;
+}
+
+#tab4{
+    padding-right:30px;
+}
+
+input[type=text], input[type=number], option{
+/*width: 250px;
+border: 1px solid #3D484C;
+background: #2D3538;
+margin: 0 0 5px;
+padding: 8px;
+border-radius: 5px;
+font-size: 12px;
+padding-right: 30px;
+color: #DDD;
+background-position: right 6px center;*/
+ 
+background-color:transparent;
+ width:100%; 
+ max-width:100%;
+ height:auto; 
+ padding:4px;
+}
+
+select {
+     background-color:transparent; 
+     height:auto; 
+     padding:4px; 
+    width:100%;
+}
+
+body {
+    padding:15px;
+    /*background-image:url(/Content/Icons/otis_redding.png);*/
+    /*background-image: url(http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/otis_redding.png);*/
+    font-family:"Lato", Calibri, Arial, sans-serif;
+}
+
+.auto-style1 {
+    width: 100%;
+    height: 120px;
+    vertical-align: top;
+}
+
+.auto-style2 {
+    /*width: 100%;
+    height: 120px;*/
+    width:150px;
+    vertical-align:text-top;
+}
+
+.auto-style5 {
+    width: 150px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: blue;
+}
+
+      
+.auto-style12 {
+    width: 495px;
+}
+
+.auto-style13 {
+    width: 250px;
+}
+       
+.auto-style14 {
+    width: 1278px;
+}
+
+.auto-style15 {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align:left;
+}
+
+.auto-style16 {
+    width: 20%;
+    /*padding-top: 10px;*/
+    padding-bottom: 10px;
+    /*color:red;*/
+}
+       
+.auto-style17 {
+    height: 840px;
+}
+
+
+.auto-style19 {
+    width: 100%;
+    height: 20px;
+}
+
+.auto-style20 {
+    left:auto;
+    width: 250px;
+    height: 20px;
+}
+
+.auto-style21 {
+    width: auto;
+    height: 20px;
+}
+
+.RadioButton { float:left; }
+
+.Textarea {
+    max-width:100%;
+}

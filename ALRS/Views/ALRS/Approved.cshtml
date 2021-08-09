@@ -1,0 +1,227 @@
+﻿@model ALRSSystem.Models.ALRS
+    
+@{
+    ViewBag.Title = "Approved";
+}
+
+@using (Html.BeginForm())
+{
+   
+
+        @*<h2></h2>*@
+    <h3>Are you sure you want to approve this leave request?</h3>
+    <table border="0">
+        <tr>
+            <td class="auto-style16">
+                <input type="submit" value="Approved" class="btn btn-primary" />
+                @*@Html.ActionLink("Approved", "Approved", new { Id = Model.ID }, new { @class = "btn btn-primary" })*@
+                @Html.ActionLink("Back", "Index", new { SPHostUrl = SharePointContext.GetSPHostUrl(HttpContext.Current.Request).AbsoluteUri }, new { @class = "btn btn-primary" })
+            </td>
+        </tr>
+    </table>
+
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.ID)
+
+    @Html.HiddenDisplay(Model.ALRSStatus, "ALRSStatus")
+    @Html.HiddenDisplay(Model.ALRSDisclaimer.ToString(), "ALRSDisclaimer")
+    @Html.HiddenDisplay(Model.ALRSBackColor, "ALRSBackColor")
+    @Html.HiddenDisplay(Model.ALRSAllDayEvent, "ALRSAllDayEvent")
+    @Html.HiddenDisplay(Model.DocumentDateCreated.ToLongDateString(), "DocumentDateCreated")
+    @Html.HiddenDisplay(Model.DocumentCreatedBy, "DocumentCreatedBy")
+
+
+    <table border="0">
+        <tr>
+            <td class="auto-style15">
+                <table border="1" cellspacing="0" cellpadding="4" style="font-family: Arial; font-size: 10pt; background-color:whitesmoke; width:100%;">
+                    <tr style="background-color:darkblue;color:white"><th align="center"><b>Requestor Details:</b></th></tr>
+                    <tr>
+                        <td class="auto-style14">
+                            <table border="0" style="font-family: Arial; font-size: 10pt; width: 100%; background-color: threedlightshadow;" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td align="left" nowrap class="auto-style5">
+                                        @Html.DisplayNameFor(model => model.ALRSName):
+                                    </td>
+
+                                    <td align="left">
+                                        @Html.ReadOnlyDisplay(Model.ALRSName, "ALRSName")
+                                    </td>
+                                </tr>
+
+                            </table>
+                            <table border="0" style="font-family: Arial; font-size: 10pt; width: 100%; background-color: whitesmoke;" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td align="left" nowrap class="auto-style5">
+                                        @Html.DisplayNameFor(model => model.ALRSStartDate):
+                                    </td>
+
+                                    <td align="left" class="auto-style21">
+                                        @Html.ReadOnlyDisplay(Model.ALRSStartDate.ToShortDateString(), "ALRSStartDate")
+                                        @*@Html.ShortDate(Model.ALRSStartDate, "ALRSStartDate", false)*@
+                                    </td>
+                                </tr>
+
+                            </table>
+                            <table border="0" style="font-family: Arial; font-size: 10pt; width: 100%; background-color: threedlightshadow;" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td align="left" nowrap class="auto-style5">
+                                        @Html.DisplayNameFor(model => model.ALRSEndDate):
+                                    </td>
+
+                                    <td align="left">
+                                        @Html.ReadOnlyDisplay(Model.ALRSEndDate.ToShortDateString(), "ALRSEndDate")
+                                        @*@Html.ShortDate(Model.ALRSEndDate, "ALRSEndDate", false)*@
+                                    </td>
+                                </tr>
+
+                            </table>
+                            <table border="0" style="font-family: Arial; font-size: 10pt; width: 100%; background-color: whitesmoke;" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td align="left" nowrap class="auto-style5">
+                                        @Html.DisplayNameFor(model => model.ALRSDuration):
+                                    </td>
+
+                                    <td align="left">
+                                        @Html.ReadOnlyDisplay(Model.ALRSDuration.ToString(), "ALRSDuration")
+                                    </td>
+                                </tr>
+
+                            </table>
+                            <table border="0" style="font-family: Arial; font-size: 10pt; width: 100%; background-color: threedlightshadow;" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td align="left" nowrap class="auto-style5">
+                                        @Html.DisplayNameFor(model => model.ALRSComments):
+                                    </td>
+
+                                    <td align="left">
+                                        @Html.ReadOnlyDisplay(Model.ALRSComments, "ALRSComments")
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+    </table>
+
+
+    <table border="0">
+        <tr>
+            <td class="auto-style15">
+                <table border="1" cellspacing="0" cellpadding="4" style="font-family: Arial; font-size: 10pt; background-color:whitesmoke; width:100%;">
+                    <tr style="background-color:brown;color:white"><th align="center"><b>Will your Judge be on leave during the dates requested?</b></th></tr>
+                    <tr>
+                        <td class="auto-style14">
+                            <table border="0" style="font-family: Arial; font-size: 10pt; width: 100%; background-color: threedlightshadow;" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td align="left">
+                                        @if (@Model.ALRSJudgeOnLeave == true)
+                                        {
+                                    <tr>@Html.DisplayFor(model => model.ALRSJudgeOnLeave) Yes</tr>;
+                                        }
+                                        else
+                                        {
+                                            <tr>@Html.HiddenDisplay(Model.ALRSJudgeOnLeave.ToString(), "ALRSJudgeOnLeave") 
+                                            @Html.DisplayFor(model => model.ALRSJudgeOnLeave) No</tr>;
+                                        }
+                                </td>
+                            </tr>
+
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            </td>
+            </tr>
+            </table>
+
+            <table border="0">
+                <tr>
+                    <td class="auto-style15">
+                        <table border="1" cellspacing="0" cellpadding="4" style="font-family: Arial; font-size: 10pt; background-color:whitesmoke; width:100%;">
+                            <tr style="background-color:darkblue;color:white"><th align="center"><b>Requestor's Position</b></th></tr>
+                            <tr>
+                                <td class="auto-style14">
+                                    <table border="0" style="font-family: Arial; font-size: 10pt; width: 100%; background-color: threedlightshadow;" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td align="left" nowrap class="auto-style5">
+                                                @Html.DisplayNameFor(model => model.ALRSRequestorPosition):
+                                            </td>
+
+                                            <td align="left">
+                                                @Html.ReadOnlyDisplay(Model.ALRSRequestorPosition, "ALRSRequestorPosition")
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+            <table border="0">
+                <tr>
+                    <td class="auto-style15">
+                        <table border="1" cellspacing="0" cellpadding="4" style="font-family: Arial; font-size: 10pt; background-color:whitesmoke; width:100%;">
+                            <tr style="background-color: brown; color: white"><th align="center"><b>Approving Manager's Comments and Additional Information</b></th></tr>
+                            <tr>
+                                <td class="auto-style14">
+                                    <table border="0" style="font-family: Arial; font-size: 10pt; width: 100%; background-color: threedlightshadow;" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td align="left" nowrap class="auto-style5">
+                                                @Html.DisplayNameFor(model => model.ALRSApproverResponseDate):
+                                            </td>
+
+                                            <td align="left">
+                                                @Html.ReadOnlyDisplay(Model.ALRSApproverResponseDate.ToString(), "ALRSApproverResponseDate")
+                                                @*@Html.DisplayFor(m => m., "ALRSStartDate")*@
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <table border="0" style="font-family: Arial; font-size: 10pt; width: 100%; background-color: threedlightshadow;" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td align="left" nowrap class="auto-style5">
+                                                @Html.DisplayNameFor(model => model.ALRSApproverComments):
+                                            </td>
+                                             
+                                            <td align="left">
+                                                @Html.TextAreaFor(model => model.ALRSApproverComments, 5, 800, new { id = "ALRSApproverComments" })
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+            <div>
+                @section DocumentLog
+            {
+                    <table border="1" cellspacing="0" cellpadding="4" style="font-family: Arial; font-size: 10pt; width: 100%; background-color: threedlightshadow;">
+                        <tr>
+                            <td align="left" nowrap class="auto-style14">
+                                Record modified by @Model.DocumentModifiedBy on @Model.DocumentDateModified
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table border="1" cellspacing="0" cellpadding="4" style="font-family: Arial; font-size: 10pt; width: 100%; background-color: threedlightshadow;">
+                        <tr>
+                            <td align="left" nowrap class="auto-style14">
+                                Record created by @Model.DocumentCreatedBy on @Model.DocumentDateCreated
+                            </td>
+                        </tr>
+                    </table>
+                }
+
+            </div>
+}

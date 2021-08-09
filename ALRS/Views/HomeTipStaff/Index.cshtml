@@ -1,0 +1,283 @@
+﻿@model IEnumerable<ALRSSystem.Models.ALRS>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+
+    <div id="container">
+
+        <p>
+            @*<h2>Additional Leave Requests</h2>*@
+            @if ((ViewData["InAssociatesRole"] == "true") || ViewData["InTipstaffRole"] == "true" || ViewData["InOwnerRole"] == "true")
+            {
+                @Html.ActionLink("New Leave Request", "Create", "ALRS", new { SPHostUrl = SharePointContext.GetSPHostUrl(HttpContext.Current.Request).AbsoluteUri }, new { @class = "btn btn-primary" }) <a id="tab4"></a>}
+        </p>
+
+        <table border="0">
+            <tr>
+                <td class="auto-style20">
+                    <table border="1" cellspacing="0" cellpadding="4" style="font-family: Arial; font-size: 10pt; background-color: whitesmoke; width: 275px; height: 100%;">
+                        <tr style="background-color: darkblue; color: white"><th align="center" class="auto-style19"><b>Leave Requests</b></th></tr>
+                        <tr>
+                            <td class="auto-style2">
+                                <table border="0" style="font-family: Arial; font-size: 12pt; width: 100%; background-color: white;" cellspacing="0" cellpadding="0">
+                                    <tr style="">
+                                        <td align="left" valign="top">
+                                            <p>
+                                                @if ((ViewData["InAssociatesRole"] == "true") || ViewData["InOwnerRole"] == "true")
+                                                {
+                                                    <img src="~/content/images/menuitem.jpg" style="float:left;">
+                                                    @Html.ActionLink("Associates", "Index", "Home", new { SPHostUrl = SharePointContext.GetSPHostUrl(HttpContext.Current.Request).AbsoluteUri }, null)
+                                                }
+
+                                            </p>
+                                            <p>
+                                                @if ((ViewData["InTipstaffRole"] == "true") || ViewData["InOwnerRole"] == "true")
+                                                {
+                                                    <img src="~/content/images/menuitem.jpg" style="float:left;">
+                                                    @Html.ActionLink("Tip Staff", "Index", "HomeTipStaff", new { rp = "Tip Staff", SPHostUrl = SharePointContext.GetSPHostUrl(HttpContext.Current.Request).AbsoluteUri }, null)
+                                                }
+
+                                            </p>
+                                        </td>
+                                    </tr>
+
+                                    <tr style="">
+                                        <td align="left" valign="top">
+                                            @if ((ViewData["InAssociatesRole"] == "true") || ViewData["InTipstaffRole"] == "true" || ViewData["InOwnerRole"] == "true")
+                                            {
+                                                <img src="~/content/images/menuitem.jpg" style="float:left;">
+                                                @Html.ActionLink("Calendar", "Index", "Calendar", new { SPHostUrl = SharePointContext.GetSPHostUrl(HttpContext.Current.Request).AbsoluteUri }, null)}
+                                        </td>
+                                    </tr>
+                                    <tr><td style="vertical-align:top;">&nbsp;</td></tr>
+
+
+                                    <tr style="">
+                                        <td align="left" valign="top">
+                                            @if ((ViewData["InAssociatesRole"] == "true") || ViewData["InTipstaffRole"] == "true" || ViewData["InOwnerRole"] == "true")
+                                            {
+                                                <img src="~/content/images/menuitem.jpg" style="float:left;">
+                                                @Html.ActionLink("Pending Approval", "Index", "PendingApproval", new { SPHostUrl = SharePointContext.GetSPHostUrl(HttpContext.Current.Request).AbsoluteUri }, null)}
+                                        </td>
+                                    </tr>
+
+                                    <tr style="">
+                                        <td align="left" valign="top">
+                                            @if ((ViewData["InAssociatesRole"] == "true") || ViewData["InOwnerRole"] == "true")
+                                            {
+                                                <img src="~/content/images/menuitem.jpg" style="float:left;">
+                                                @Html.ActionLink("A: Leave Totals", "Index", "LeaveTotals", new { SPHostUrl = SharePointContext.GetSPHostUrl(HttpContext.Current.Request).AbsoluteUri }, null)}
+                                        </td>
+                                    </tr>
+
+                                    <tr style="">
+                                        <td align="left" valign="top">
+                                            @if ((ViewData["InTipstaffRole"] == "true") || ViewData["InOwnerRole"] == "true")
+                                            {
+                                                <img src="~/content/images/menuitem.jpg" style="float:left;">
+                                                @Html.ActionLink("T: Export Data", "Report", "Report", new { SPHostUrl = SharePointContext.GetSPHostUrl(HttpContext.Current.Request).AbsoluteUri }, null)}
+                                        </td>
+                                    </tr>
+
+
+                                    <tr><td style="vertical-align:top;">&nbsp;</td></tr>
+                                    <tr style="">
+                                        <td align="left" valign="top">
+                                            @if (ViewData["InOwnerRole"] == "true")
+                                            {
+                                                <img src="~/content/images/menuitem.jpg" style="float:left;">
+                                                @Html.ActionLink("Approval List", "Index", "ApprovalList", new { SPHostUrl = SharePointContext.GetSPHostUrl(HttpContext.Current.Request).AbsoluteUri }, null)}
+                                        </td>
+                                    </tr>
+
+                                    @*@Html.DropDownList("ALRSRequestorPosition", ViewData["HRPNames"] as SelectList, new { onchange = "document.location.href = '/Home/Index?rp=' + this.options[this.selectedIndex].value;" })*@
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        @*Server side datatables*@
+        @if ((ViewData["InAssociatesRole"] == "true") || ViewData["InTipstaffRole"] == "true" || ViewData["InOwnerRole"] == "true"){
+        <td class="auto-style1">
+            <table border="1" cellspacing="0" cellpadding="4" style="font-family: Arial; font-size: 10pt; background-color: whitesmoke; width: 100%; ">
+                <tr style="background-color: darkblue; color: white"><th align="center" class="auto-style19"><b></b>Tipstaff View</th></tr>
+            </table>
+
+            <table id="exampletip" border="0" cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Leave Type</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Duration</th>
+                        @*<th>Id</th>*@
+                    </tr>
+                </thead>
+            </table>
+        </td>
+        }
+        else
+        {
+            //Html.Action("Unauthorised", "ALRS");
+            //{ Response.Redirect("~/ALRS/Unauthorised");}
+            //@Response.Redirect("/ALRS/Alert");
+            //@Response.Redirect(Url.Action("Details", new { id = Model.ID })); 
+        }
+        @*<td class="auto-style1">
+            <table border="1" cellspacing="0" cellpadding="4" style="font-family: Arial; font-size: 10pt; background-color: whitesmoke; width: 100%; ">
+                <tr style="background-color: darkblue; color: white"><th align="center" class="auto-style19"><b></b>View</th></tr>
+
+            </table>
+
+            <table border="1" cellspacing="0" cellpadding="4" style="font-family: Arial; font-size: 10pt; background-color:whitesmoke; width:100%; ">
+
+                <tr style="background-color: lightgoldenrodyellow; color: black">
+                </tr>
+
+                <tr>
+                    <div id="demo">
+                        <table id="example" border="0" cellpadding="0" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>@Html.DisplayNameFor(model => model.ALRSName)</th>
+                                    <th id="tab1">@Html.DisplayNameFor(model => model.ALRSStatus)</th>
+                                    <th id="tab2">@Html.DisplayNameFor(model => model.ALRSLeaveType)</th>
+                                    <th id="tab2">@Html.DisplayNameFor(model => model.ALRSStartDate)</th>
+                                    <td id="tab2">@Html.DisplayNameFor(model => model.ALRSEndDate)</td>
+                                    <td id="tab2">@Html.DisplayNameFor(model => model.ALRSDuration)</td>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr class=@Html.Raw('"')@item.ALRSName@Html.Raw('"') id=@Html.Raw('"')@item.ALRSStatus@Html.Raw('"')>
+                                        <td>@Html.DisplayFor(modelItem => item.ALRSName)</td>
+                                        <td id="tab1">@Html.DisplayFor(modelItem => item.ALRSStatus)</td>
+
+                                        @if (item.ALRSDuration != 1)
+                                        {
+                                            <td id="tab2" align="left" valign="top">
+                                                <img src="~/content/images/light_circle_purple.png" style="float:left;">
+                                                <p>
+                                                    @Html.ActionLink("Additional Leave", "Details", "ALRS", new { id = item.ID }, null)
+                                                </p>
+                                                <p></p>
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td id="tab2" align="left" valign="top">
+                                                <img src="~/content/images/light_circle_green.png" style="float:left;">
+                                                @Html.ActionLink("Additional Leave", "Details", "ALRS", new { id = item.ID }, null)
+                                            </td>
+                                        }
+
+                                        <td>@Html.DisplayFor(modelItem => item.ALRSStartDate)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.ALRSEndDate)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.ALRSDuration)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                </tr>
+            </table>*@
+
+        @*HTML Code for dropdwon list and datatable rendering below
+            <table border="0">
+                <tr>
+                    <td class="auto-style15">
+                        <table border="1" cellspacing="0" cellpadding="4" style="font-family: Arial; font-size: 10pt; background-color:whitesmoke; width:100%;">
+                            <tr style="background-color:darkblue;color:white"><th align="center"><b>Leave Requests</b></th></tr>
+                            <tr>
+                                <td class="auto-style14">
+                                    <table border="0" style="font-family: Arial; font-size: 10pt; width: 100%; background-color: whitesmoke;" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td align="left">
+
+                                                @Html.DropDownList("ALRSRequestorPosition", ViewData["HRPNames"] as SelectList, new { onchange = "document.location.href = '/Home/Index?rp=' + this.options[this.selectedIndex].value;" })
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <div id="demo">
+                <table id="example" border="0" cellpadding="0" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.ALRSName)</th>
+                            <th id="tab1">@Html.DisplayNameFor(model => model.ALRSStatus)</th>
+                            <th id="tab2">@Html.DisplayNameFor(model => model.ALRSLeaveType)</th>
+                            <th id="tab2">@Html.DisplayNameFor(model => model.ALRSStartDate)</th>
+                            <td id="tab2">@Html.DisplayNameFor(model => model.ALRSEndDate)</td>
+                            <td id="tab2">@Html.DisplayNameFor(model => model.ALRSDuration)</td>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr class=@Html.Raw('"')@item.ALRSName@Html.Raw('"') id=@Html.Raw('"')@item.ALRSStatus@Html.Raw('"')>
+                                    <td>@Html.DisplayFor(modelItem => item.ALRSName)</td>
+                                    <td id="tab1">@Html.DisplayFor(modelItem => item.ALRSStatus)</td>
+
+                                    @if (item.ALRSDuration != 1)
+                                    {
+                                        <td id="tab2" align="left" valign="top">
+                                            <img src="~/content/images/light_circle_purple.png" style="float:left;">
+                                            <p>
+                                                @Html.ActionLink("Additional Leave", "Details", "ALRS", new { id = item.ID }, null)
+                                            </p>
+                                            <p></p>
+                                        </td>
+
+                                    }
+                                    else
+                                    {
+                                        <td id="tab2" align="left" valign="top">
+                                            <img src="~/content/images/light_circle_green.png" style="float:left;">
+                                            @Html.ActionLink("Additional Leave", "Details", "ALRS", new { id = item.ID }, null)
+                                        </td>
+                                    }
+
+                                    <td>@Html.DisplayFor(modelItem => item.ALRSStartDate)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.ALRSEndDate)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.ALRSDuration)</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>*@
+
+
+    </div>
+
+    <table border="0" cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+
+}

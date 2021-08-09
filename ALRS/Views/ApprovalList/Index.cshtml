@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ALRSSystem.Models.ApprovalList>
+
+@{
+    ViewBag.Title = "Approval List";
+}
+
+<h1></h1>
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AssociateApprover)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipStaffApprover)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.HRNotification)
+            </th>*@
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssociateApprover)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipStaffApprover)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.HRNotification)
+                </td>*@
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID, SPHostUrl = SharePointContext.GetSPHostUrl(HttpContext.Current.Request).AbsoluteUri })
+                @*@Html.ActionLink("Details", "Details", new { id=item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.ID })*@
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ALRSDBDataSet" targetNamespace="http://tempuri.org/ALRSDBDataSet.xsd" xmlns:mstns="http://tempuri.org/ALRSDBDataSet.xsd" xmlns="http://tempuri.org/ALRSDBDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="ALRSDB" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ALRSDB (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.ALRSDB.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ALRSTableAdapter" GeneratorDataComponentClassName="ALRSTableAdapter" Name="ALRS" UserDataComponentName="ALRSTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ALRSDB (Web.config)" DbObjectName="ALRSDB.dbo.ALRS" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ALRSName, ALRSStartDate, ALRSEndDate, ALRSDuration, ALRSStatus, ALRSLeaveType FROM dbo.ALRS</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ALRSName" DataSetColumn="ALRSName" />
+              <Mapping SourceColumn="ALRSStartDate" DataSetColumn="ALRSStartDate" />
+              <Mapping SourceColumn="ALRSEndDate" DataSetColumn="ALRSEndDate" />
+              <Mapping SourceColumn="ALRSDuration" DataSetColumn="ALRSDuration" />
+              <Mapping SourceColumn="ALRSStatus" DataSetColumn="ALRSStatus" />
+              <Mapping SourceColumn="ALRSLeaveType" DataSetColumn="ALRSLeaveType" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ALRSDBDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="ALRSDBDataSet" msprop:Generator_UserDSName="ALRSDBDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ALRS" msprop:Generator_TableClassName="ALRSDataTable" msprop:Generator_TableVarName="tableALRS" msprop:Generator_TablePropName="ALRS" msprop:Generator_RowDeletingName="ALRSRowDeleting" msprop:Generator_RowChangingName="ALRSRowChanging" msprop:Generator_RowEvHandlerName="ALRSRowChangeEventHandler" msprop:Generator_RowDeletedName="ALRSRowDeleted" msprop:Generator_UserTableName="ALRS" msprop:Generator_RowChangedName="ALRSRowChanged" msprop:Generator_RowEvArgName="ALRSRowChangeEvent" msprop:Generator_RowClassName="ALRSRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ALRSName" msprop:Generator_ColumnVarNameInTable="columnALRSName" msprop:Generator_ColumnPropNameInRow="ALRSName" msprop:Generator_ColumnPropNameInTable="ALRSNameColumn" msprop:Generator_UserColumnName="ALRSName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ALRSStartDate" msprop:Generator_ColumnVarNameInTable="columnALRSStartDate" msprop:Generator_ColumnPropNameInRow="ALRSStartDate" msprop:Generator_ColumnPropNameInTable="ALRSStartDateColumn" msprop:Generator_UserColumnName="ALRSStartDate" type="xs:dateTime" />
+              <xs:element name="ALRSEndDate" msprop:Generator_ColumnVarNameInTable="columnALRSEndDate" msprop:Generator_ColumnPropNameInRow="ALRSEndDate" msprop:Generator_ColumnPropNameInTable="ALRSEndDateColumn" msprop:Generator_UserColumnName="ALRSEndDate" type="xs:dateTime" />
+              <xs:element name="ALRSDuration" msprop:Generator_ColumnVarNameInTable="columnALRSDuration" msprop:Generator_ColumnPropNameInRow="ALRSDuration" msprop:Generator_ColumnPropNameInTable="ALRSDurationColumn" msprop:Generator_UserColumnName="ALRSDuration" type="xs:int" />
+              <xs:element name="ALRSStatus" msprop:Generator_ColumnVarNameInTable="columnALRSStatus" msprop:Generator_ColumnPropNameInRow="ALRSStatus" msprop:Generator_ColumnPropNameInTable="ALRSStatusColumn" msprop:Generator_UserColumnName="ALRSStatus" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ALRSLeaveType" msprop:Generator_ColumnVarNameInTable="columnALRSLeaveType" msprop:Generator_ColumnPropNameInRow="ALRSLeaveType" msprop:Generator_ColumnPropNameInTable="ALRSLeaveTypeColumn" msprop:Generator_UserColumnName="ALRSLeaveType" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

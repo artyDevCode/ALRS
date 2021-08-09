@@ -1,0 +1,79 @@
+﻿@model ALRSSystem.Models.Access
+
+@{
+    ViewBag.Title = "Create Access Control";
+}
+
+<h2></h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.UserId)
+    
+    <table border="0">
+        <tr>
+            <td class="auto-style16">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                @Html.ActionLink("Back", "Index", new { SPHostUrl = SharePointContext.GetSPHostUrl(HttpContext.Current.Request).AbsoluteUri }, new { @class = "btn btn-primary" })
+            </td>
+        </tr>
+    </table>
+
+
+    <table border="0">
+        <tr>
+            <td class="auto-style15">
+                <table border="1" cellspacing="0" cellpadding="4" style="font-family: Arial; font-size: 10pt; background-color:whitesmoke; width:100%;">
+                    <tr style="background-color:darkblue;color:white"><th align="center"><b>ALRS Access Control</b></th></tr>
+                    <tr>
+                        <td class="auto-style14">
+
+                            <table border="0" style="font-family: Arial; font-size: 10pt; width: 100%; background-color: threedlightshadow;" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td align="left" nowrap class="auto-style5">
+                                        Access Group:
+                                    </td>
+
+                                    <td align="left">
+                                        @Html.DropDownList("AccessGroup", ViewData["AGNames"] as SelectList)
+                                        @Html.ValidationMessageFor(model => model.AccessGroup)
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <table border="0" style="font-family: Arial; font-size: 10pt; width: 100%; background-color: whitesmoke;" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td align="left" nowrap class="auto-style5">
+                                        User:
+                                    </td>
+
+                                    <td align="left">
+
+                                        @*<p id="rData"><datalist id="pfSelect"></datalist></p>
+                                        <option id="target" data-ajax="true" data-ajax-method="get" data-autocomplete="@Url.Action("getUsers")"></option>*@
+
+                                        <input id="UsersDataList" type="text" name="UserName" list="UserName" value=@Html.Raw('"')@Model.UserName@Html.Raw('"') style="width:100%"/>
+                                        <datalist data-autocompleteme='@Url.Action("getUsers")' data-val="true" data-val-length="Please enter the user." data-val-length-max="500" id="UserName"></datalist>
+                                        @Html.ValidationMessageFor(model => model.UserName)
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

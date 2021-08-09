@@ -1,0 +1,121 @@
+﻿@model ALRSSystem.Models.ApprovalList
+
+@{
+    ViewBag.Title = "Edit Approval List";
+}
+
+<h2></h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <table border="0">
+        <tr>
+            <td class="auto-style16">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                @Html.ActionLink("Back", "Index", new { SPHostUrl = SharePointContext.GetSPHostUrl(HttpContext.Current.Request).AbsoluteUri }, new { @class = "btn btn-primary" })
+            </td>
+        </tr>
+    </table>
+
+        
+<table border="0">
+    <tr>
+        <td class="auto-style15">
+            <table border="1" cellspacing="0" cellpadding="4" style="font-family: Arial; font-size: 10pt; background-color:whitesmoke; width:100%;">
+                <tr style="background-color:darkblue;color:white"><th align="center" ><b>Approval List</b></th></tr>
+                <tr>
+                    <td class="auto-style14">
+                        <table border="0" style="font-family: Arial; font-size: 10pt; width: 100%; background-color: whitesmoke;" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align="left" nowrap class="auto-style5">
+                                    Associates Approver:
+                                </td>
+
+                                <td align="left">
+                                    <input id="AssociateApproverDataList" type="text" name="AssociateApprover" list="AssociateApprover" value=@Html.Raw('"')@Model.AssociateApprover@Html.Raw('"') style="width:100%" />
+                                    <datalist data-autocompleteme='@Url.Action("getApprover")' data-val="true" data-val-length="Please enter the Associate Approver." data-val-length-max="500" id="AssociateApprover"></datalist>
+                                    @*@Html.DropDownList("AssociateApprover", (SelectList)ViewData["APSNames"], "Select")*@
+                                    @Html.ValidationMessageFor(model => model.AssociateApprover)
+                                </td>
+                            </tr>
+                        </table>
+
+                        <table border="0" style="font-family: Arial; font-size: 10pt; width: 100%; background-color: threedlightshadow;" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align="left" nowrap class="auto-style5">
+                                    Tipstaff Approver:
+                                </td>
+
+                                <td align="left">
+                                    <input id="TipStaffApproverDataList" type="text" name="TipStaffApprover" list="TipStaffApprover" value=@Html.Raw('"')@Model.TipStaffApprover@Html.Raw('"') style="width:100%" />
+                                    <datalist data-autocompleteme='@Url.Action("getApprover")' data-val="true" data-val-length="Please enter the Tipstaff Approver." data-val-length-max="500" id="TipStaffApprover"></datalist>
+                                    @*@Html.DropDownList("TipstaffApprover", (SelectList)ViewData["TPSNames"], "Select")*@
+                                    @Html.ValidationMessageFor(model => model.TipStaffApprover)
+                                </td>
+                            </tr>
+                        </table>
+                        @*<table border="0" style="font-family: Arial; font-size: 10pt; width: 100%; background-color: threedlightshadow;" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align="left" nowrap class="auto-style5">
+                                    HR Notification:
+                                </td>
+
+                                <td align="left">
+                                    @Html.DropDownList("HRNotification", (SelectList)ViewData["HRNNames"], "Select")
+                                </td>
+                            </tr>
+                        </table>*@
+
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>    
+
+            
+    @*<div class="form-horizontal">
+        <h4>ApprovalList</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AssociateApprover, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AssociateApprover)
+                @Html.ValidationMessageFor(model => model.AssociateApprover)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TipStaffApprover, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TipStaffApprover)
+                @Html.ValidationMessageFor(model => model.TipStaffApprover)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HRNotification, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HRNotification)
+                @Html.ValidationMessageFor(model => model.HRNotification)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>*@
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,45 @@
+﻿@using ActionMailer.Net
+@model ALRSSystem.Models.User
+
+@{
+    Layout = null;
+}
+
+<html>
+
+<body>
+
+    <div>
+
+        Your request for the leave has been <b><font color="darkblue">Approved</font></b>.
+        <br />
+        <br />
+        Details as follows.
+        <br />
+        <br />
+        <b>Name:</b> @Model.ToName
+        <br />
+        <b>Leave Type:</b> Additional Leave
+        <br />
+        <b>Dates:</b> @Model.ALRSStartDate.ToShortDateString() - @Model.ALRSEndDate.ToShortDateString()
+        <br />
+        <br />
+        <b>Additional Comments:</b>
+        <br />
+        @Model.ApproverComments
+        <br />
+        <br />
+        <a href=@Model.ALRSLink>Document Link</a>
+        <br />
+        <br />
+        <br />
+        Regards
+        <br />
+        @Model.FromName
+
+
+    </div>
+
+</body>
+
+</html>

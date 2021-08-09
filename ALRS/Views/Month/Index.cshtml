@@ -1,0 +1,37 @@
+﻿@using DayPilot.Web.Mvc.Enums
+@using DayPilot.Web.Mvc.Enums.Month
+@using DayPilot.Web.Mvc.Events.Month
+@using DayPilot.Web.Mvc.Themes.Month
+
+@*@section TitleContent { AJAX MVC Monthly Calendar }*@
+
+<form style="padding-top:40px;">
+
+    @Html.ActionLink("Back", "Index", "Calendar")
+
+
+    @Html.DayPilotMenu("menu", new DayPilotMenuConfig
+{
+    Items = new DayPilot.Web.Mvc.MenuItemCollection
+    {
+        new DayPilot.Web.Mvc.MenuItem { Text = "Edit", Action = MenuItemAction.CallBack, Command = "Edit"},
+        new DayPilot.Web.Mvc.MenuItem { Text = "-"},
+        new DayPilot.Web.Mvc.MenuItem { Text = "Delete", Action = MenuItemAction.CallBack, Command = "Delete"}
+    }
+})
+
+
+    @Html.DayPilotMonth("dpm", new DayPilotMonthConfig()
+{
+    BackendUrl = Url.Content("~/Month/Backend"),
+    EventMoveHandling = EventMoveHandlingType.CallBack,
+    EventResizeHandling = EventResizeHandlingType.CallBack,
+    TimeRangeSelectedHandling = TimeRangeSelectedHandlingType.CallBack,
+    Theme = "calendar_green",
+    EventBubble = "bubble",
+    EventClickHandling = EventClickHandlingType.CallBack,
+    HeaderClickHandling = HeaderClickHandlingType.JavaScript,
+    HeaderClickJavaScript = "alert('Day clicked: ' + c.date);",
+    ContextMenu = "menu"
+})
+</form>

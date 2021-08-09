@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "ALRS Alert";
+}
+
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+
+
+    <h2></h2>
+
+
+        @Html.Raw(TempData["alertMessage"])
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

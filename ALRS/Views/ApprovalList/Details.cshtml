@@ -1,0 +1,42 @@
+﻿@model ALRSSystem.Models.ApprovalList
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Approval List</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AssociateApprover)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssociateApprover)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipStaffApprover)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipStaffApprover)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HRNotification)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HRNotification)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID, SPHostUrl = SharePointContext.GetSPHostUrl(HttpContext.Request).AbsoluteUri }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

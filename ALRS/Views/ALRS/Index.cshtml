@@ -1,0 +1,81 @@
+﻿@model IEnumerable<ALRSSystem.Models.ALRS>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", new { SPHostUrl = SharePointContext.GetSPHostUrl(HttpContext.Current.Request).AbsoluteUri }, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ALRSName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ALRSStartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ALRSEndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ALRSDuration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ALRSComments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ALRSJudgeOnLeave)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ALRSRequestorPosition)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ALRSDisclaimer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ALRSStatus)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ALRSName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ALRSStartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ALRSEndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ALRSDuration)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ALRSComments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ALRSJudgeOnLeave)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ALRSRequestorPosition)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ALRSDisclaimer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ALRSStatus)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID, SPHostUrl = SharePointContext.GetSPHostUrl(HttpContext.Current.Request).AbsoluteUri }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID, SPHostUrl = SharePointContext.GetSPHostUrl(HttpContext.Current.Request).AbsoluteUri }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID, SPHostUrl = SharePointContext.GetSPHostUrl(HttpContext.Current.Request).AbsoluteUri })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,218 @@
+﻿@model ALRSSystem.Models.ALRS
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.ID)
+    @Html.HiddenFor(model => model.DocumentDateCreated)
+    @Html.HiddenFor(model => model.DocumentDateModified)
+    @Html.HiddenFor(model => model.DocumentModifiedBy)
+    @Html.HiddenFor(model => model.DocumentCreatedBy)
+    @Html.HiddenFor(model => model.ALRSStatus)
+
+    <h2></h2>
+    <table border="0">
+        <tr>
+            <td class="auto-style15">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+                @Html.ActionLink("Back", "Index", new { SPHostUrl = SharePointContext.GetSPHostUrl(HttpContext.Current.Request).AbsoluteUri } , new { @class = "btn btn-primary" })
+            </td>
+        </tr>
+    </table>
+
+
+    @Html.DisplayALRSImage("New")
+
+<table border="0">
+    <tr>
+        <td class="auto-style15">
+            <table border="1" cellspacing="0" cellpadding="4" style="font-family: Arial; font-size: 10pt; background-color:whitesmoke; width:100%;">
+                <tr style="background-color:darkblue;color:white"><th align="center" ><b>Requestor Details:</b></th></tr>
+                    <tr>
+                        <td class="auto-style14">
+                            @if ((ViewData["InOwnerRole"] == "true") || ViewData["InChangeNameRole"] == "true")
+                            { 
+                                <table border="0" style="font-family: Arial; font-size: 10pt; width: 100%; background-color: silver;" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td align="left" nowrap class="auto-style5">
+                                            Select Alternative Name
+                                        </td>
+
+                                        <td align="left">
+                                            @Html.DropDownList("ALRSAlternateSelect" , (SelectList)ViewData["ADNames"], "Select") 
+                                        </td>
+
+                                    </tr>
+                                </table>
+                            }
+                            
+                            <table border="0" style="font-family: Arial; font-size: 10pt; width: 100%; background-color: threedlightshadow;" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td align="left" nowrap class="auto-style5">
+                                        @Html.DisplayNameFor(model => model.ALRSName):
+                                    </td>
+
+                                    <td align="left">
+                                        @Html.ALRSNameDisplay(Model.ALRSName, "ALRSName")
+                                    </td>
+                                </tr>
+                            </table>
+                            <table border="0" style="font-family: Arial; font-size: 10pt; width: 100%; background-color: whitesmoke;" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td align="left" nowrap class="auto-style5">
+                                        @Html.DisplayNameFor(model => model.ALRSStartDate):
+                                    </td>
+
+                                    <td align="left">
+                                        @Html.ShortDate(Model.ALRSStartDate, "ALRSStartDate", true)
+                                    </td>
+                                </tr>
+
+                            </table>
+                            <table border="0" style="font-family: Arial; font-size: 10pt; width: 100%; background-color: threedlightshadow;" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td align="left" nowrap class="auto-style5">
+                                        @Html.DisplayNameFor(model => model.ALRSEndDate):
+                                    </td>
+
+                                    <td align="left">
+                                        @Html.ShortDate(Model.ALRSEndDate, "ALRSEndDate", true)
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <table border="0" style="font-family: Arial; font-size: 10pt; width: 100%; background-color: whitesmoke;" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td align="left" nowrap class="auto-style5">
+                                        @Html.DisplayNameFor(model => model.ALRSDuration):
+                                    </td>
+
+                                    <td align="left">
+                                        @Html.ALRSDurationDisplay(Model.ALRSDuration.ToString(), "ALRSDuration")
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <table border="0" style="font-family: Arial; font-size: 10pt; width: 100%; background-color: threedlightshadow;" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td align="left" nowrap class="auto-style5">
+                                        @Html.DisplayNameFor(model => model.ALRSComments):
+                                    </td>
+
+                                    <td align="left">
+                                        @Html.EditorFor(model => model.ALRSComments)
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </td>
+                    </tr>
+
+                </table>
+        </td>
+    </tr>
+</table>    
+
+
+<table border="0">
+    <tr>
+        <td class="auto-style15">
+            <table border="1" cellspacing="0" cellpadding="4" style="font-family: Arial; font-size: 10pt; background-color:whitesmoke; width:100%;">
+                <tr style="background-color:brown;color:white"><th align="center" ><b>Will your Judge be on leave during the dates requested?</b></th></tr>
+                <tr>
+                    <td class="auto-style14">
+                        <table border="0" style="font-family: Arial; font-size: 10pt; width: 100%; background-color: threedlightshadow;" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align="left">
+                                    @if (@Model.ALRSJudgeOnLeave == true)
+                                    {
+                                        <tr>@Html.DisplayFor(model => model.ALRSJudgeOnLeave) Yes</tr>;
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            @Html.RadioButtonForSelectList(m => m.ALRSJudgeOnLeave, Model.JudgeOnLeaveList)
+                                            @Html.ValidationMessageFor(m => m.ALRSJudgeOnLeave)
+                                        </tr>;
+                                    }
+                                </td>
+                            </tr>
+
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>    
+
+    
+<table border="0">
+    <tr>
+        <td class="auto-style15">
+            <table border="1" cellspacing="0" cellpadding="4" style="font-family: Arial; font-size: 10pt; background-color:whitesmoke; width:100%;">
+                <tr style="background-color:darkblue;color:white"><th align="center" ><b>Requestor's Position</b></th></tr>
+                <tr>
+                    <td class="auto-style14">
+                        <table border="0" style="font-family: Arial; font-size: 10pt; width: 100%; background-color: threedlightshadow;" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align="left" nowrap class="auto-style5">
+                                    @Html.DisplayNameFor(model => model.ALRSRequestorPosition):
+                                </td>
+                              
+                                <td align="left">
+                                    @Html.DropDownList("ALRSRequestorPosition", ViewData["ARPNames"] as SelectList)
+                                    @Html.ValidationMessageFor(m => m.ALRSRequestorPosition)
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>    
+
+
+
+    <table border="0">
+    <tr>
+        <td class="auto-style15">
+            <table border="1" cellspacing="0" cellpadding="4" style="font-family: Arial; font-size: 10pt; background-color:whitesmoke; width:100%;">
+                <tr style="background-color: brown; color: white"><th align="center" ><b>Disclaimer</b></th></tr>
+                <tr>
+                    <td class="auto-style14">
+                        <table border="0" style="font-family: Arial; font-size: 10pt; width: 100%; background-color: threedlightshadow;" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align="left">
+                                    <p>View Additional Leave Guidelines</p>
+                                    <p></p>
+                                    <p>I acknowledge that this application will be assessed in accordance with the 'Additional Leave Guidelines' which I have read and understood.</p>
+                                    <p>I hereby agree to accept the terms and conditions outlined in the guidelines.</p>
+                                    <p>
+                                        <b>Agree </b>
+                                        @Html.CheckBoxFor(m => m.ALRSDisclaimer)
+                                        @Html.ValidationMessageFor(m => m.ALRSDisclaimer)
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table> 
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

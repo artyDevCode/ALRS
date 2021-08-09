@@ -1,0 +1,144 @@
+﻿@using DayPilot.Web.Mvc.Enums.Calendar
+@using DayPilot.Web.Mvc.Enums.Navigator
+@using DayPilot.Web.Mvc.Events.Calendar
+@using DayPilot.Web.Mvc.Themes.Calendar
+@using ALRSSystem.Controllers;
+
+@{
+    ViewBag.Title = "ALRS Calendar";
+}
+<script type="text/javascript" src="@Url.Content("~/Scripts/DayPilot/daypilot-all.min.js")"></script>
+
+<form style="padding-top:10px;">
+
+    <div class="container">
+
+        </div>
+                <div class="left-column">
+            @Html.DayPilotNavigator("dp_navigator", new DayPilotNavigatorConfig
+        {
+            CssOnly = true,
+            CssClassPrefix = "navigator_white",
+            ShowMonths = 3,
+            SkipMonths = 3,
+
+            Theme = "navigator_green",
+            ShowWeekNumbers = false,
+            BoundDayPilot = "dpc",
+            SelectMode = NavigatorSelectMode.Week
+        })
+        </div>
+
+        <div class="right-column">
+            <div id="toolbar">
+                    <a href="#" id="toolbar_day">Day</a>
+                    <a href="#" id="toolbar_week">Week</a>
+                    <a href="#" id="toolbar_month">Month</a>
+            </div>
+
+            <div>
+                    @Html.DayPilotBubble("bubble")
+
+                    @Html.DayPilotCalendar("dp_day", new DayPilotCalendarConfig
+        {
+            BackendUrl = Url.Content("~/Backend/Day"),
+            EventResizeHandling = EventResizeHandlingType.CallBack,
+            EventMoveHandling = EventMoveHandlingType.CallBack,
+            CssOnly = true,
+            CssClassPrefix = "calendar_white",
+            ViewType = DayPilot.Web.Mvc.Enums.Calendar.ViewType.Day,
+
+            EventClickHandling = EventClickHandlingType.JavaScript,
+            EventClickJavaScript = "edit(e.id())",
+            TimeRangeSelectedHandling = TimeRangeSelectedHandlingType.JavaScript,
+            TimeRangeSelectedJavaScript = "create(start, end)",
+            ShowAllDayEvents = true,
+            ContextMenu = "menu",
+            Theme = "calendar_green",
+
+            Height = 400,
+            HeightSpec = HeightSpec.BusinessHours,
+            EventBubble = "bubble"
+        })
+                    @Html.DayPilotCalendar("dp_week", new DayPilotCalendarConfig
+        {
+            BackendUrl = Url.Content("~/Backend/Week"),
+            EventResizeHandling = EventResizeHandlingType.CallBack,
+            EventMoveHandling = EventMoveHandlingType.CallBack,
+            CssOnly = true,
+            CssClassPrefix = "calendar_white",
+            ViewType = DayPilot.Web.Mvc.Enums.Calendar.ViewType.Week,
+            EventClickHandling = EventClickHandlingType.JavaScript,
+            EventClickJavaScript = "edit(e.id())",
+            TimeRangeSelectedHandling = TimeRangeSelectedHandlingType.JavaScript,
+            TimeRangeSelectedJavaScript = "create(start, end)",
+            ShowAllDayEvents = true,
+            ContextMenu = "menu",
+            Theme = "calendar_green"
+        })
+                    @Html.DayPilotMonth("dp_month", new DayPilotMonthConfig
+        {
+            BackendUrl = Url.Content("~/Backend/Month"),
+            EventResizeHandling = DayPilot.Web.Mvc.Events.Month.EventResizeHandlingType.CallBack,
+            EventMoveHandling = DayPilot.Web.Mvc.Events.Month.EventMoveHandlingType.CallBack,
+            CssOnly = true,
+            CssClassPrefix = "month_white",
+            EventHeight = 25,
+
+            EventClickHandling = DayPilot.Web.Mvc.Events.Month.EventClickHandlingType.JavaScript,
+            EventClickJavaScript = "edit(e.id())",
+            TimeRangeSelectedHandling = DayPilot.Web.Mvc.Events.Month.TimeRangeSelectedHandlingType.JavaScript,
+            TimeRangeSelectedJavaScript = "create(start, end)",
+            ContextMenu = "menu",
+            Theme = "calendar_green",
+            EventBubble = "bubble",
+            Height = "400",
+            HeightSpec = 0
+        })
+                </div>
+            </div>
+    </div>
+
+
+            <script type="text/javascript">
+
+                function edit(id) {
+                    var modal = new DayPilot.Modal();
+                    modal.closed = function () {
+                        if (this.result == "OK") {
+                            switcher.active.control.commandCallBack('refresh');
+                        }
+                    };
+
+                    window.location.href = "ALRS/Details/" + id + "?SPHostUrl=" + $("#SPHostUrl").val(); //+ "?SPHostUrl=http%3A%2F%2Fdev%2Dshp2013";
+                }
+
+                function create(start, end) {
+                    var modal = new DayPilot.Modal();
+                    modal.closed = function () {
+                        if (this.result == "OK") {
+                            switcher.active.control.commandCallBack('refresh');
+                        }
+                        switcher.active.control.clearSelection();
+                    };
+                    window.location.href = "ALRS/Create" + "?SPHostUrl=" + $("#SPHostUrl").val(); //+ "?SPHostUrl=http%3A%2F%2Fdev%2Dshp2013";
+                    //modal.showUrl("ALRS/Create?start=" + start + "&end=" + end);
+                }
+
+
+                var switcher = new DayPilot.Switcher();
+
+                switcher.addView(dp_day);
+                switcher.addView(dp_week);
+                switcher.addView(dp_month);
+
+                switcher.addButton("toolbar_day", dp_day);
+                switcher.addButton("toolbar_week", dp_week);
+                switcher.addButton("toolbar_month", dp_month);
+
+                switcher.addNavigator(dp_navigator);
+
+                switcher.show(dp_month);
+
+            </script>
+    </form>

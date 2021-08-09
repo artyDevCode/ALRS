@@ -1,0 +1,106 @@
+﻿@model ALRSSystem.Models.ALRS
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>ALRS</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ALRSName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ALRSName)
+                @Html.ValidationMessageFor(model => model.ALRSName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ALRSStartDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ALRSStartDate)
+                @Html.ValidationMessageFor(model => model.ALRSStartDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ALRSEndDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ALRSEndDate)
+                @Html.ValidationMessageFor(model => model.ALRSEndDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ALRSDuration, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ALRSDuration)
+                @Html.ValidationMessageFor(model => model.ALRSDuration)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ALRSComments, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ALRSComments)
+                @Html.ValidationMessageFor(model => model.ALRSComments)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ALRSJudgeOnLeave, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ALRSJudgeOnLeave)
+                @Html.ValidationMessageFor(model => model.ALRSJudgeOnLeave)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ALRSRequestorPosition, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ALRSRequestorPosition)
+                @Html.ValidationMessageFor(model => model.ALRSRequestorPosition)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ALRSDisclaimer, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ALRSDisclaimer)
+                @Html.ValidationMessageFor(model => model.ALRSDisclaimer)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ALRSStatus, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ALRSStatus)
+                @Html.ValidationMessageFor(model => model.ALRSStatus)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index", new { SPHostUrl = SharePointContext.GetSPHostUrl(HttpContext.Current.Request).AbsoluteUri })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

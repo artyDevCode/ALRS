@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALRS", "ALRS\ALRS.csproj", "{0FA22DBA-2AE2-4A65-94FF-2A5C71375F33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALRS.Tests", "ALRS.Tests\ALRS.Tests.csproj", "{A0300512-3083-4B6C-B2F7-9933C5502DDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALRS.SharePoint", "ALRS.SharePoint\ALRS.SharePoint.csproj", "{0A369277-90EC-4640-8A87-DF172468F105}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://dev-sccm:8080/tfs/sharepointapps
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ALRS.SharePoint\\ALRS.SharePoint.csproj
+		SccProjectName1 = ALRS.SharePoint
+		SccLocalPath1 = ALRS.SharePoint
+		SccProjectUniqueName2 = ALRS.Tests\\ALRS.Tests.csproj
+		SccProjectName2 = ALRS.Tests
+		SccLocalPath2 = ALRS.Tests
+		SccProjectUniqueName3 = ALRS\\ALRS.csproj
+		SccProjectName3 = ALRS
+		SccLocalPath3 = ALRS
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0FA22DBA-2AE2-4A65-94FF-2A5C71375F33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FA22DBA-2AE2-4A65-94FF-2A5C71375F33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FA22DBA-2AE2-4A65-94FF-2A5C71375F33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FA22DBA-2AE2-4A65-94FF-2A5C71375F33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0300512-3083-4B6C-B2F7-9933C5502DDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0300512-3083-4B6C-B2F7-9933C5502DDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0300512-3083-4B6C-B2F7-9933C5502DDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0300512-3083-4B6C-B2F7-9933C5502DDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A369277-90EC-4640-8A87-DF172468F105}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A369277-90EC-4640-8A87-DF172468F105}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A369277-90EC-4640-8A87-DF172468F105}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0A369277-90EC-4640-8A87-DF172468F105}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A369277-90EC-4640-8A87-DF172468F105}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A369277-90EC-4640-8A87-DF172468F105}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
